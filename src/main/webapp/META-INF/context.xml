@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+  
+  <Resource
+		name="jdbc/test_ds"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		validationQuery="select @@version"
+		url="jdbc:sqlserver://127.0.0.1;databaseName=test_db;applicationName=tomeejpacheck"
+		username="test_user"
+		password="test_password"
+		maxPoolSize="10000"
+		maxActive="10000"
+		maxIdle="1000"
+		maxWait="-1"/>
+  
+</Context>
