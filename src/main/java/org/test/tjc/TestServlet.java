@@ -3,6 +3,7 @@ package org.test.tjc;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.Objects;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -17,7 +18,7 @@ import javax.sql.DataSource;
 
 import org.test.tjc.model.TestEntity;
 
-@WebServlet( urlPatterns = {"/TestServlet"} )
+@WebServlet( urlPatterns = {"/index.html"} )
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -31,12 +32,10 @@ public class TestServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			try ( Connection con = dataSource.getConnection(); ) {			
-				if ( con == null )
-					throw new Exception("failed get connection");
-				
+				Objects.requireNonNull(con, "failed get connection jni");				
 				out.println("connection url from datasource inject\n"+con.getMetaData().getURL()+"\n");
 			}	
-		} catch (Exception e) {
+		} catch ( Exception e ) {
 			out.println(e.getMessage());
 			e.printStackTrace();
 		}
@@ -46,8 +45,7 @@ public class TestServlet extends HttpServlet {
 			em.getTransaction().begin();
 			try {
 				Connection con = em.unwrap(java.sql.Connection.class);
-				if ( con == null )
-					throw new Exception("failed get connection");
+				Objects.requireNonNull(con, "failed get connection from jpa");
 				
 				out.println("connection url from entity manager\n"+con.getMetaData().getURL()+"\n");
 				

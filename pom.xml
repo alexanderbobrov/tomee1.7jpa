@@ -43,10 +43,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>9.2.0.jre8</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.22</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -97,11 +98,12 @@
 					<version>3.0.0</version>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.tomee.maven</groupId>
+					<groupId>org.apache.openejb.maven</groupId>
 					<artifactId>tomee-maven-plugin</artifactId>
-					<version>1.0.7</version>
+					<version>1.7.4</version>
 					<configuration>
-						<context>${project.artifactId}</context>
+						<tomeeVersion>1.7.4</tomeeVersion>
+						<tomeeClassifier>plume</tomeeClassifier>
 					</configuration>
 				</plugin>
 			</plugins>
