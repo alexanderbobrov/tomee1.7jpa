@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import org.test.tjc.model.TestEntity;
+//import org.test.tjc.model.TestEntity;
 
 @WebServlet( urlPatterns = {"/index.html"} )
 public class TestServlet extends HttpServlet {
@@ -32,8 +32,8 @@ public class TestServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			try ( Connection con = dataSource.getConnection(); ) {			
-				Objects.requireNonNull(con, "failed get connection jni");				
-				out.println("connection url from datasource inject\n"+con.getMetaData().getURL()+"\n");
+				Objects.requireNonNull(con, "failed get connection jndi");				
+				out.println("connection url from datasource resource\n"+con.getMetaData().getURL()+"\n");
 			}	
 		} catch ( Exception e ) {
 			out.println(e.getMessage());
@@ -49,9 +49,9 @@ public class TestServlet extends HttpServlet {
 				
 				out.println("connection url from entity manager\n"+con.getMetaData().getURL()+"\n");
 				
-				TestEntity testEntity = em.find(TestEntity.class, 1);
+				//TestEntity testEntity = em.find(TestEntity.class, 1);
 				
-				out.println(testEntity);
+				//out.println(testEntity);
 				
 				em.getTransaction().commit();
 			} catch (Exception e) {
